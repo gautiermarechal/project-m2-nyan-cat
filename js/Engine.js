@@ -16,6 +16,10 @@ class Engine {
     this.enemies = [];
     // We add the background image to the game
     addBackground(this.root);
+
+    this.score = new Score(this.root);
+
+    this.bonuses = [];
   }
 
   // The gameLoop will run every few milliseconds. It does several things
@@ -53,13 +57,29 @@ class Engine {
       const spot = nextEnemySpot(this.enemies);
       this.enemies.push(new Enemy(this.root, spot));
     }
+    //Add bonus
+    this.bonuses.forEach((bonus) => {
+      bonus.update(timeDiff);
+    });
+
+    this.bonuses = this.bonuses.filter((bonuses) => {
+      return !bonuses.destroyed;
+    });
+
+    while (this.bonuses.length < MAX_BONUS) {
+      const bonusSpot = nextBonusSpot();
+      let bonus = new Bonus(this.root, bonusSpot);
+      this.bonuses.push(bonus);
+    }
 
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert('Game over');
+      new Message(this.root, 500, 300, this.score);
       return;
     }
+
+    this.score.increment();
 
     // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
     setTimeout(this.gameLoop, 20);
@@ -68,6 +88,19 @@ class Engine {
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerDead = () => {
+    let currentSpotEnemy = this.enemies.filter(
+      (enemy) => this.player.spot === enemy.spot
+    );
+
+    if (currentSpotEnemy[0]) {
+      if (
+        this.player.y >=
+          Math.round(currentSpotEnemy[0].y) - PLAYER_WIDTH * 1.95 &&
+        this.player.y <= Math.round(currentSpotEnemy[0].y) + PLAYER_WIDTH * 1.95
+      ) {
+        return true;
+      }
+    }
     return false;
   };
 }
