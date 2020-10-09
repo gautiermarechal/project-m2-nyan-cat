@@ -19,11 +19,31 @@ const keydownHandler = (event) => {
     gameEngine.player.moveRight();
   }
 
-  if(event.code === 'KeyP'){
+  if(event.code === 'KeyS'){
     gameEngine.weapon.defineRange(gameEngine.player.spot);
     gameEngine.weapon.shot(gameEngine.enemies);
+    gameEngine.ammo.decrement();
 
-  }
+    if(gameEngine.weapon.availableShots !== 0){
+      let weaponVisuals = new WeaponVisuals(gameEngine.root, gameEngine.weapon.range);
+      setTimeout(()=> {
+        if(gameEngine.weapon.range.length === 2){
+          weaponVisuals.explosion1.style.display = "none";
+          weaponVisuals.explosion2.style.display = "none";
+        }
+        else{
+          weaponVisuals.explosion1.style.display = "none";
+          weaponVisuals.explosion2.style.display = "none";
+          weaponVisuals.explosion3.style.display = "none";
+        }
+      }
+        ,500
+      )
+    }
+    }
+
+    
+
 };
 
 // We add an event listener to document. document the ancestor of all DOM nodes in the DOM.

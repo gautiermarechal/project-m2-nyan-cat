@@ -1,12 +1,13 @@
 class Weapon {
     constructor(){
         this.range = []
-        this.availableShots = 3;
+        this.availableShots = 4;
     }
 
     defineRange = (spot) => {
         if(this.availableShots > 0){
-            this.availableShots -= 1;
+            console.log(this.availableShots);
+            this.reduceAmmo()
             if(spot === 0) {
                 this.range = [spot,spot + 1]
             }
@@ -25,7 +26,7 @@ class Weapon {
     }
 
     shot = (enemies) => {
-        if(this.availableShots < 3){
+        if(this.availableShots > 0){
             enemies = enemies.filter((enemy) => {
                 return !enemy.destroyed;
               });
@@ -33,7 +34,6 @@ class Weapon {
                 enemies.forEach((enemy, i) => {
                     if(enemy.spot === enemyPosition){
                         gameEngine.enemies[i].destroyed = true;
-                        console.log(gameEngine.enemies[i]);
                         gameEngine.enemies[i].domElement.style.display = "none";
                     }
                 })

@@ -22,6 +22,8 @@ class Engine {
     this.bonuses = [];
 
     this.weapon = new Weapon();
+
+    this.ammo = new Ammo(this.root, this.weapon.availableShots - 1);
   }
 
   // The gameLoop will run every few milliseconds. It does several things
@@ -78,7 +80,6 @@ class Engine {
     if(this.getBonus()){
       //Add 100 just once to the score
       let done = false;
-      console.log("yay");
       if(!done){
         this.score.points += 100;
         this.score.div.style.color = "green";
@@ -127,7 +128,6 @@ class Engine {
 
   getBonus = () => {
     let currentBonusSpot = this.bonuses.filter( bonus => this.player.spot === bonus.bonusSpot);
-    console.log(currentBonusSpot);
     if(currentBonusSpot[0]){
       if(this.player.y >= Math.round(currentBonusSpot[0].y) - PLAYER_WIDTH && this.player.y <= Math.round(currentBonusSpot[0].y) + PLAYER_WIDTH){
         return true;

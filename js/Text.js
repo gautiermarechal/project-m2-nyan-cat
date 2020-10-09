@@ -56,6 +56,9 @@ class Message {
     restart.onclick = function () {
       div.style.display = "none";
       gameEngine.score.points = 0;
+      gameEngine.ammo.div.style.display = "none";
+      gameEngine.weapon = new Weapon();
+      gameEngine.ammo = new Ammo(gameEngine.root, 3);
       gameEngine.gameLoop();
     };
 
