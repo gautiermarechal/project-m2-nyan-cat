@@ -20,6 +20,8 @@ class Engine {
     this.score = new Score(this.root);
 
     this.bonuses = [];
+
+    this.weapon = new Weapon();
   }
 
   // The gameLoop will run every few milliseconds. It does several things
@@ -72,6 +74,25 @@ class Engine {
       this.bonuses.push(bonus);
     }
 
+    // Get bonus
+    if(this.getBonus()){
+      //Add 100 just once to the score
+      let done = false;
+      console.log("yay");
+      if(!done){
+        this.score.points += 100;
+        this.score.div.style.color = "green";
+        this.score.div.style.transition = "0.1s";
+        this.score.div.style.fontSize = "3em";
+        done = true;
+      } 
+    }
+    else{
+      this.score.div.style.fontSize = "2em";
+      this.score.div.style.color = "white";
+    }
+
+
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
@@ -103,4 +124,15 @@ class Engine {
     }
     return false;
   };
+
+  getBonus = () => {
+    let currentBonusSpot = this.bonuses.filter( bonus => this.player.spot === bonus.bonusSpot);
+    console.log(currentBonusSpot);
+    if(currentBonusSpot[0]){
+      if(this.player.y >= Math.round(currentBonusSpot[0].y) - PLAYER_WIDTH && this.player.y <= Math.round(currentBonusSpot[0].y) + PLAYER_WIDTH){
+        return true;
+      }
+      return false;
+    }
+  }
 }

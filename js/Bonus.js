@@ -3,18 +3,18 @@ class Bonus {
     this.root = root;
     this.bonusSpot = bonusSpot;
 
-    this.x = bonusSpot;
+    this.x = bonusSpot * BONUS_WIDTH;
     this.y = -BONUS_HEIGHT;
     this.destroyed = false;
 
     this.domElement = document.createElement("img");
 
-    this.domElement.src = "./images/bonus_logo.png";
+    this.domElement.src = "./images/bonus_logo.svg";
+    this.domElement.style.background = "transparent";
     this.domElement.style.position = "absolute";
     this.domElement.style.left = `${this.x}px`;
     this.domElement.style.top = `${this.y}px`;
     this.domElement.style.zIndex = 5;
-    this.domElement.style.width = BONUS_HEIGHT;
     this.domElement.style.width = BONUS_WIDTH;
 
     root.appendChild(this.domElement);

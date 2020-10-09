@@ -55,7 +55,7 @@ class Message {
     };
     restart.onclick = function () {
       div.style.display = "none";
-
+      gameEngine.score.points = 0;
       gameEngine.gameLoop();
     };
 

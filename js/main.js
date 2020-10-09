@@ -18,6 +18,12 @@ const keydownHandler = (event) => {
   if (event.code === 'ArrowRight') {
     gameEngine.player.moveRight();
   }
+
+  if(event.code === 'KeyP'){
+    gameEngine.weapon.defineRange(gameEngine.player.spot);
+    gameEngine.weapon.shot(gameEngine.enemies);
+
+  }
 };
 
 // We add an event listener to document. document the ancestor of all DOM nodes in the DOM.
