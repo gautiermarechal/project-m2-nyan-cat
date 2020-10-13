@@ -11,7 +11,7 @@ class Weapon {
             if(spot === 0) {
                 this.range = [spot,spot + 1]
             }
-            else if(spot === 4){
+            else if(spot === 10){
                 this.range = [spot - 1,spot]
             }
             else{

@@ -13,20 +13,19 @@ class Message {
     div.style.position = "absolute";
     div.style.left = `${xPos}px`;
     div.style.top = `${yPos}px`;
-    div.style.width = "300px";
-    div.style.height = "200px";
+    div.style.width = "500px";
+    div.style.height = "300px";
     div.style.display = "flex";
     div.style.flexDirection = "column";
     div.style.alignItems = "center";
     div.style.justifyContent = "center";
     div.style.color = "white";
-    div.style.backgroundImage = "url('./images/stars.png')";
+    div.style.backgroundImage = "url('./images/retro_restart.jpg')";
     div.style.borderStyle = "solid";
     div.style.borderColor = "#FF97FF";
-    div.style.borderWidth = "5px";
+    div.style.borderWidth = "10px";
     div.style.padding = "2.5px";
     div.style.animation = "spin 10s linear";
-    div.style.font = "bold 30px Impact";
     div.style.zIndex = 2000;
 
     div.innerHTML = "Game Over";

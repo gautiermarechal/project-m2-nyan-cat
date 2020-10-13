@@ -97,7 +97,7 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      new Message(this.root, 500, 300, this.score);
+      new Message(this.root, 150, 100, this.score);
       return;
     }
 
@@ -117,8 +117,8 @@ class Engine {
     if (currentSpotEnemy[0]) {
       if (
         this.player.y >=
-          Math.round(currentSpotEnemy[0].y) - PLAYER_WIDTH * 1.95 &&
-        this.player.y <= Math.round(currentSpotEnemy[0].y) + PLAYER_WIDTH * 1.95
+          Math.round(currentSpotEnemy[0].y) - PLAYER_HEIGHT  &&
+        this.player.y <= Math.round(currentSpotEnemy[0].y) + PLAYER_HEIGHT 
       ) {
         return true;
       }
